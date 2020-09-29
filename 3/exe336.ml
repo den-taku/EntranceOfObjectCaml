@@ -35,3 +35,8 @@ let gcd(n, m) =
   else 
     if m mod n = 0 then n else gcd(n, m mod n)
 ;; *)
+
+let rec cmob(n, m) =
+  if n = m || m = 0 then 1
+  else cmob(n-1, m) + cmob(n-1, m-1)
+;;
