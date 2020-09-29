@@ -13,3 +13,7 @@ let rec pow(x, n) = (* x ^ n *)
   else if n = 1 then x 
   else pow(x * x, n / 2) * if even n then 1 else x
 ;;
+
+let rec powi(x, n, res) = 
+  if n = 0 then res else powi(x, n-1, x * res)
+;;
