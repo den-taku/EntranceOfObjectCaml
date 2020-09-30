@@ -14,3 +14,10 @@ let sqsum n = sigma (square, n)
 let cbsum n =
   let cube x = x * x * x in sigma (cube, n)
 ;;
+
+let cbsum n = sigma ((fun x -> x * x * x), n);;
+
+let sq5 = ((fun x -> x * x), 5) in
+  sigma sq5;;
+
+(fun x -> x * x) 7;;
