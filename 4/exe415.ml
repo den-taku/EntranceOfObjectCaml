@@ -29,3 +29,13 @@ and odd n =
 let pow x = fun n -> pow'(x, n);;
 
 let cube x = pow x 3;;
+
+(* int -> int -> int -> int *)
+let f a = fun b -> fun c -> fun d -> a * b * c * d;;
+let f = fun a b c d -> a * b * c * d;;
+
+(* (int -> int) -> int -> int *)
+let g (f: int -> int) = fun (a:int) -> f a;;
+
+(* (int -> int -> int) -> int *)
+let h (f: int -> int -> int) =  f 1 2 ;;  
