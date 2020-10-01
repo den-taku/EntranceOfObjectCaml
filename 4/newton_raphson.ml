@@ -22,3 +22,5 @@ let newton_method f guess = fixpoint (newton_transform f) guess ;;
 let square_root x = newton_method (fun y -> y *. y -. x) 1.0;;
 
 square_root 5.0 ;;
+
+(* newton_method (fun x -> x *. x *. x *. x *. x -. 3. *. x *. x *. x *. x + x *. x *. x +. 5. *. x *. x - 6. *. x +. 2.) (-1);; *)
