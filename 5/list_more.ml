@@ -55,3 +55,15 @@ let rec exists p = function
   [] -> true
 | x :: rest -> (p x) || (exists p rest)
 ;;
+
+let rec fold_right f l e = 
+  match l with
+    [] -> e
+  | x :: rest -> f x (fold_right f rest e)
+;;
+
+let rec fold_left f e l =
+  match l with 
+    [] -> e
+  | x :: rest -> fold_left f (f e x) rest
+;;
