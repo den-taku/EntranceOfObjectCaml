@@ -40,3 +40,19 @@ let rec preord t l =
       Lf -> l
     | Br(x, left, right) -> x :: (preord left (preord right l))
 ;;
+
+let rec mem t x =
+  match t with
+      Lf -> false 
+    | Br (y, left, right) ->
+      if x = y then true
+      else if x < y then mem left x else mem right x
+;;
+
+let rec add t x =
+  match t with 
+      Lf -> Br (x, Lf, Lf)
+    | (Br (y, left, right) as whole) -> 
+      if  x = y then whole
+      else if x < y then Br(y, add left x, right) else Br(y, left, add right x)
+;;
