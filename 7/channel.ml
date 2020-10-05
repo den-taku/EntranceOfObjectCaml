@@ -17,3 +17,12 @@ output_string file_out "8, \n" ;;
 output_string file_out "9, \n" ;;
 output_string file_out "0, \n" ;;
 close_out file_out ;;
+
+(* let cp file1 file2 = 
+  let in1 = open_in file1 in
+  let out2 = open_out file2 in
+  while (try (match (output_string out2 (input_line in1)) 
+         with () -> true ) with End_of_file -> false )
+  do () done in
+  close_in in1 in close_out out2
+;; *)
