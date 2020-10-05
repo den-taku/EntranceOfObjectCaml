@@ -17,15 +17,20 @@ let f = function
 
 f Foo ;;
 
-f (Bar 4) ;;
+(* f (Bar 4) ;; *)
 
+let rec assoc a = function
+    [] -> raise Not_found
+  | (a', b) :: rest -> if a = a' then b else assoc a rest
+;;
 
+let city_phone = [("Kyoto", "075"); ("Osaka", "06"); ("Tokyo", "03")];;
 
+assoc "Osaka" city_phone ;;
 
+(* assoc "Nara" city_phone ;; *)
 
-
-
-
+(* failwith "foo" ;; *)
 
 
 
