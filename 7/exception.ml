@@ -32,12 +32,65 @@ assoc "Osaka" city_phone ;;
 
 (* failwith "foo" ;; *)
 
+try 4 + 3 with Division_by_zero -> 9 ;;
+try 1 + 3 / 0 with Division_by_zero -> 9 ;;
 
+let query_city_phone c =
+  try assoc c city_phone with Not_found -> "999"
+;;
 
+query_city_phone "Osaka" ;;
+query_city_phone "Nara" ;;
 
+let time : (unit -> 'a) -> 'a * float =
+  fun f ->
+    let start = Sys.time () in
+    let res   = f () in
+    let end_  = Sys.time () in
+    (res, end_ -. start)
+;;
 
+let rec prod_list = function
+    [] -> 1
+  | n :: rest -> n * prod_list rest 
+;;
 
+let ex1 = time ( fun () -> prod_list [2; 3; 4] );;
+let ex2 = time ( fun () -> prod_list [4; 0; 2; 3; 4] ) ;;
 
+let rec prod_list = function
+    [] -> 1
+  | 0 :: _ -> 0
+  | n :: rest -> n * prod_list rest
+;;
+
+let ex3 = time ( fun () -> prod_list [2; 3; 4] ) ;;
+let ex4 = time ( fun () -> prod_list [4; 0; 2; 3; 4] ) ;;
+
+(* type 'a option = None | Some of 'a ;;  *)
+
+let rec prod_list_aux = function
+    [] -> Some 1
+  | 0 :: _ -> None
+  | n :: rest -> 
+    (match prod_list_aux rest with None -> None | Some m -> Some (m * n))
+;;
+
+let ex5 = time ( fun () -> prod_list_aux [2; 3; 4] ) ;;
+let ex6 = time ( fun () -> prod_list_aux [4; 0; 2; 3; 4] ) ;;
+
+exception Zero_found ;;
+
+let rec prod_list_aux = function
+    [] -> 1
+  | 0 :: _ -> raise Zero_found
+  | n :: rest -> n * prod_list_aux rest 
+;;
+
+let prod_list l = try prod_list_aux l with Zero_found -> 0 ;;
+
+let ex7 = time (fun () -> prod_list [2; 3; 4]) ;;
+let ex8 = time (fun () -> prod_list [4; 0; 2; 3; 4]) ;;
 
 
 
